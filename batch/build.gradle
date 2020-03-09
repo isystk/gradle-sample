@@ -7,3 +7,24 @@ dependencies {
 }
 
 description = 'batch'
+
+/**
+    * リリース用パッケージの作成を行う。
+    *
+    */
+task distribution(dependsOn: 'jar', type: Zip) {
+
+    into ('batch/bin') {
+
+        from 'bin'
+
+    }
+
+    into ('batch/libs') {
+
+        from 'build/libs/batch.jar'
+        from configurations.compile
+
+    }
+
+}
